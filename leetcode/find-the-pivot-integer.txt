@@ -1,0 +1,24 @@
+class Solution {
+    public int pivotInteger(int n) {
+        int sum = n * (n + 1) / 2;
+        int lo = 1, hi = n;
+        
+        while (lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
+            int lSum = (mid - 1) * mid / 2;
+            int rSum = sum - ((mid + 1) * mid / 2);
+            
+            if (lSum == rSum) {
+                return mid;
+            } else if (lSum < rSum) {
+                lo = mid + 1;
+            } else {
+                hi = mid - 1;
+            }
+        }
+        
+        return -1; 
+    }
+}
+
+// binary search
