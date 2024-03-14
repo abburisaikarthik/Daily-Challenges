@@ -6,5 +6,5 @@ This repository contains daily coding challenges from LeetCode and GeeksforGeeks
 
 - **LeetCode**: Contains daily challenges from LeetCode.
 - **GeeksforGeeks**: Contains daily challenges from GeeksforGeeks.
-- 
+  
 Happy coding! 🚀
