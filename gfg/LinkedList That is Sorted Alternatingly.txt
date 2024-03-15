@@ -1,0 +1,70 @@
+
+class Solution {
+    
+   public Node sort(Node head){
+        //your code here, return the head of the sorted list
+        
+        
+        // seperate ascending and descending lists 
+        // reverese descending list and apply merge 2 sorted lists on both
+        Node h1 = new Node(-1);
+        Node h2 = new Node(-1);
+        
+        Node ch1 = h1 , ch2 = h2;
+        
+        Node curr = head;
+        
+        while(curr!=null)
+        {
+            ch1.next = curr;
+            ch1 = ch1.next;
+            curr = curr.next;
+             if(curr!=null)
+             {
+                 ch2.next=curr;
+                 ch2 = ch2.next;
+                 curr = curr.next;
+             }
+             ch1.next = null;
+             ch2.next = null;
+        }
+        h1 = h1.next;
+        h2 = h2.next;
+        h2 = reverse(h2);
+        return merge(h1,h2);
+   }
+   
+   Node reverse(Node head)
+   {
+       Node prev = null;
+       Node temp = head;
+       
+       while(temp!=null)
+       {
+           Node next = temp.next;
+           temp.next = prev;
+           prev = temp ;
+           temp = next;
+       }
+       return prev;
+   }
+   Node merge(Node h1 ,Node h2)
+   {
+       if(h1==null)return h2;
+       else if(h2==null)return h1;
+       
+       if(h1.data<h2.data)
+       {
+           h1.next = merge(h1.next,h2);
+           return h1;
+       }
+       else
+       {
+           h2.next = merge(h1,h2.next);
+           return h2;
+       }
+       
+   }
+
+
+}
