@@ -1,0 +1,19 @@
+class Solution {
+    public int leastInterval(char[] tasks, int n) {
+        Map<Character, Integer> counter = new HashMap<>();
+        for (char task: tasks) counter.put(task, counter.getOrDefault(task, 0) + 1);
+        var pq = new PriorityQueue<Integer>((a, b) -> b - a);
+        pq.addAll(counter.values());
+        Queue<int[]> q = new LinkedList<>();
+        int time = 0;
+        while (!pq.isEmpty() || !q.isEmpty()) {
+            time++;
+            if (!pq.isEmpty()) {
+                if (pq.peek() <= 1) pq.poll();
+                else q.offer(new int[] {pq.poll() - 1, time + n});
+            }
+            if (!q.isEmpty() && q.peek()[1] <= time) pq.offer(q.poll()[0]);
+        }
+        return time;
+    }
+}
