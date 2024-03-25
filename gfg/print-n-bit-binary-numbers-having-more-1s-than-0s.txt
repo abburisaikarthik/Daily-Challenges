@@ -1,0 +1,27 @@
+class Solution {
+    ArrayList<String> NBitBinary(int n) {
+        // code here
+        int cnt1 =0 , cnt0 =0;
+        ArrayList<String> ans = new ArrayList();
+        StringBuilder curr = new StringBuilder();
+        func (n, cnt1 , cnt0, curr ,ans);
+        return ans;
+        
+    }
+    
+    void func (int n , int cnt1, int cnt0, StringBuilder curr ,ArrayList<String> ans)
+    {
+        if(n==0)
+       {
+            ans.add(curr.toString());
+            return;
+       }
+       func(n-1,cnt1+1,cnt0,new StringBuilder(curr).append("1"),ans);
+       if(cnt1>cnt0)
+       {
+            func(n-1,cnt1,cnt0+1,new StringBuilder(curr).append("0"),ans);
+       }
+    }
+    
+    
+}
