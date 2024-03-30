@@ -1,0 +1,27 @@
+class Solution {
+    public long countSubarrays(int[] nums, int k) {
+        int maxi=0,count=0;
+        for(int i=0;i<nums.length;i++)
+        {
+            maxi=Math.max(maxi,nums[i]);
+        }
+        long ans=0;
+        for(int i=0,j=0;j<nums.length;j++)
+        {
+            if(nums[j]==maxi)
+            {
+                count++;
+            }
+            while(count>=k)
+            {
+                ans=ans+(long)(nums.length-j);
+                if(nums[i]==maxi)
+                {
+                    count--;
+                }
+                i++;
+            }
+        }
+        return ans;
+    }
+}
