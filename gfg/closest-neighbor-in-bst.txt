@@ -1,0 +1,24 @@
+class Solution {
+    public static int findMaxForN(Node root, int n) {
+        
+        int ans = findMaxForNRecursive(root, n, Integer.MIN_VALUE);
+        return (ans ==Integer.MIN_VALUE) ? -1:ans;
+    }
+    
+    private static int findMaxForNRecursive(Node node, int n, int maxSoFar) {
+
+        if (node == null) {
+            return maxSoFar;
+        }
+        
+        
+        if (node.key <= n) {
+            maxSoFar = Math.max(maxSoFar, node.key);
+            return findMaxForNRecursive(node.right, n, maxSoFar);
+        }
+        
+        else {
+            return findMaxForNRecursive(node.left, n, maxSoFar);
+        }
+    }
+}
