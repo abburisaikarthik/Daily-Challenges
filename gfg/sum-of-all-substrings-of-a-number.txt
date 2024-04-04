@@ -1,0 +1,13 @@
+class Solution{
+    public static long sumSubstrings(String s){
+        long prev = s.charAt(0) - '0';
+        long ans = prev;
+        long dp = 1000000007;
+        for(int i = 1; i < s.length(); i++){
+            long ch = s.charAt(i) - '0';
+            prev = (((10 * prev) % dp) + (ch * (i + 1)) % dp) % dp;
+            ans =  (ans + prev) % dp;
+        }
+        return ans;
+    }
+}
