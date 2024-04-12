@@ -1,0 +1,18 @@
+class Solution {
+    static long pairAndSum(int n, long arr[]) {
+        // code here
+        long res =0;
+        
+        for(int i =0;i<32;i++)
+        {
+            
+            long cnt =0;
+            for(int j =0;j<n ;j++)
+            
+                if((arr[j]&(1L<<i))!=0)cnt++;
+            res+= (1L<<i)*(cnt*(cnt-1)/2);
+            
+        }
+        return res;
+    }
+}
